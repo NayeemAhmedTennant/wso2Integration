@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-16.04'
 
 steps:
 - task: NodeTool@0
@@ -20,3 +20,27 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+
+- task: CopyFiles@2
+  displayName: 'Copy built content'
+  inputs: 
+    SourceFolder: '$(Build.SourcesDirectory)/dist'
+    contents: '**'
+    targetFolder: $(Build.ArtifactStagingDirectory)/dist
+    cleanTargetFolder: true
+    OverWrite: true
+
+- task: CopyFiles@2
+  displayName: 'Copy deployment file'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    contents: 'deploy.json'
+    targetFolder: $(Build.ArtifactStagingDirectory)/development
+    cleanTargetFolder: true
+    OverWrite: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: drop
