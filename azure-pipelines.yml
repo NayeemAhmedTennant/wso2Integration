@@ -15,6 +15,12 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'runtime'
+    version: '3.1'
+    includePreviewVersions: true
+
 - script: |
     npm install -g @angular/cli
     npm install
