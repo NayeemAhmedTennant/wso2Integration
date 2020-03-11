@@ -51,6 +51,7 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop
 
+
 - task: AzureFileCopy@4
   inputs:
     SourcePath: 'Build.ArtifactStagingDirectory'
@@ -58,5 +59,12 @@ steps:
     Destination: 'AzureBlob'
     storage: 'nayeemtestiothublogs'
     ContainerName: '$web'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Tennant-MIF-DevOps-Pipeline'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az storage blob upload-batch --destination $web --source $(Build.ArtifactStagingDirectory) --account-key nayeemtestiothublogs --account-name nayeemtestiothublogs'
 
 
