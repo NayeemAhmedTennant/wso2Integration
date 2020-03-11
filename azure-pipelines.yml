@@ -51,15 +51,6 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop
 
-
-- task: AzureFileCopy@4
-  inputs:
-    SourcePath: 'Build.ArtifactStagingDirectory'
-    azureSubscription: 'Tennant_IoT_Dev(b7be6b74-8cdc-414e-b981-a366e6140651)'
-    Destination: 'AzureBlob'
-    storage: 'nayeemtestiothublogs'
-    ContainerName: '$web'
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'Tennant-MIF-DevOps-Pipeline'
