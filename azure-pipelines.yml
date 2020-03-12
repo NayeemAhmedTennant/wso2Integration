@@ -56,6 +56,6 @@ steps:
     azureSubscription: 'Tennant-MIF-DevOps-Pipeline'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --destination $web --source $(Build.ArtifactStagingDirectory) --account-key nayeemtestiothublogs --account-name nayeemtestiothublogs'
+    inlineScript: 'az storage blob upload-batch --destination $(folder) --source $(Build.ArtifactStagingDirectory) --account-key $(account_key) --account-name $(account_name)'
 
 
