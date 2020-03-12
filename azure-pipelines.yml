@@ -36,20 +36,11 @@ steps:
     cleanTargetFolder: true
     OverWrite: true
 
-- task: CopyFiles@2
-  displayName: 'Copy deployment file'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    contents: 'deploy.json'
-    targetFolder: $(Build.ArtifactStagingDirectory)/development
-    cleanTargetFolder: true
-    OverWrite: true
-
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: drop
+    artifactName: HerculesFrontEndRelease1.0.0.0
 
 - task: AzureCLI@2
   inputs:
