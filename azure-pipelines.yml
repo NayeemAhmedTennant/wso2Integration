@@ -42,11 +42,6 @@ steps:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: HerculesFrontEndRelease1.0.0.0
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Tennant-MIF-DevOps-Pipeline'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az storage blob upload-batch --destination $FOLDER --source $SOURCE_FOLDER --account-key $ACCOUNT_KEY --account-name $ACCOUNT_NAME'
+
 
 
